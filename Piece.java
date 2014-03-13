@@ -24,6 +24,33 @@ public class Piece {
 		this.name = name;
 		this.color = color;
 	}
+	
+	void showDetails(){
+		String pieceName = "NULL piece.";
+		String pieceColor = "Non-Coloured ";
+				
+		if (this.color == 1){
+			pieceColor = "White ";
+		} else if (this.color == 2){
+			pieceColor = "Black ";
+		}
+				
+		if (this.name == 1) {
+			pieceName = "Pawn.";
+		} else if (this.name == 2) {
+			pieceName = "Knight.";
+		} else if (this.name == 3) {
+			pieceName = "Bishop.";
+		} else if (this.name == 4) {
+			pieceName = "Rook.";
+		} else if (this.name == 5) {
+			pieceName = "Queen.";
+		} else if (this.name == 6) {
+			pieceName = "King.";
+		}
+		
+		System.out.println("This piece is a" + pieceColor + pieceName);
+	}
 }
 
 
