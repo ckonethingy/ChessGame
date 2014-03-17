@@ -5,7 +5,14 @@ public class Chessboard {
 	int whitePieces;
 	
 	Chessboard(){
-		//place the pawns and null pieces
+		
+		for(int j = 0; j < 8; j++){
+			for(int h = 0; h < 8; h++){
+				board[j][h] = new Piece(0,0);
+			}			
+		}
+		
+		//place the pawns and null pieces		
 		for(int i = 0; i < 8; i++){
 			board[1][i].color = 1;
 			board[1][i].name = 1;
@@ -70,8 +77,8 @@ public class Chessboard {
 		board[7][7].name = 4;
 		board[7][7].color = 2;
 		
-		this.blackpieces = 16;
-		this.whitepieces = 16;
+		this.blackPieces = 16;
+		this.whitePieces = 16;
 
 	}
 	
@@ -98,9 +105,22 @@ public class Chessboard {
 	//end x-y- peice is removed from the board. 
 	//1 is removed from the piece counter
 	//Does not check if the square is NOT occupied
-	//UNFINISHED
 	void takePiece(int startx, int starty, int endx, int endy){
-		removeColor = board[endx-1][endy-1].color;
+		int removeColor = board[endx-1][endy-1].color;
+		//reduce the piece counter for the color
+		if (removeColor == 1){
+			this.whitePieces--;
+		} else if (removeColor == 2){
+			this.blackPieces--;
+		}
+		
+		//the piece on end x-y is replaced by the start x-y piece
+		board[endx-1][endy-1].color = board[startx-1][starty-1].color;
+		board[endx-1][endy-1].name = board[startx-1][starty-1].name;
+		
+		//original square reverted to a NULL piece
+		board[startx-1][endx-1].color = 0;
+		board[startx-1][endx-1].name = 0;
 		
 	}
 }
